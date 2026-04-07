@@ -1,3 +1,9 @@
+linux-qcom-x1e (7.0.0-31.31) questing; urgency=medium
+
+  * Add support for QCOM SPMI PMIC5 Gen3 ADC
+
+ -- Tobias Heider <tobias.heider@canonical.com>  Sat, 04 Apr 2026 17:45:10 +0200
+
 linux-qcom-x1e (7.0.0-29.29) questing; urgency=medium
 
   [ Aleksandrs Vinarskis ]
