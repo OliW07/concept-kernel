@@ -70,7 +70,11 @@ ath12k_mem_profile_based_param ath12k_mem_profile_based_param[] = {
 };
 
 static int ath12k_core_rfkill_config(struct ath12k_base *ab)
+
 {
+
+	return 0;
+
 	struct ath12k *ar;
 	int ret = 0, i;
 
