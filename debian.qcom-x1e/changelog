@@ -1,3 +1,22 @@
+linux-qcom-x1e (7.0.0-31.31) questing; urgency=medium
+
+  * Add support for QCOM SPMI PMIC5 Gen3 ADC
+
+ -- Tobias Heider <tobias.heider@canonical.com>  Sat, 04 Apr 2026 17:45:10 +0200
+
+linux-qcom-x1e (7.0.0-29.29) questing; urgency=medium
+
+  [ Aleksandrs Vinarskis ]
+  * Introduce EC driver for Dell XPS 13 9345
+
+ -- Tobias Heider <tobias.heider@canonical.com>  Wed, 01 Apr 2026 15:08:04 +0200
+
+linux-qcom-x1e (7.0.0-25.25) resolute; urgency=medium
+
+  [ Jens Glathe ]
+  * dmaengine: qcom: gpi: return -EPROBE_DEFER on early timeout
+
+ -- Tobias Heider <tobias.heider@canonical.com>  Fri, 27 Mar 2026 00:30:09 +0100
 linux-qcom-x1e (7.0.0-22.22) questing; urgency=medium
 
   * x1e80100-lenovo-yoga-slim7x: fix RGB cam supply voltage fix
