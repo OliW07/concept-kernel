@@ -512,6 +512,7 @@
 		regulator-max-microvolt = <5000000>;
 		gpio = <&tlmm 65 0>;
 		enable-active-high;
+		regulator-boot-on;
 		startup-delay-us = <100000>;
 	};
 };
