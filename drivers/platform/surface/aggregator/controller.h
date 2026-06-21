@@ -275,6 +275,7 @@ int ssam_ctrl_notif_display_off(struct ssam_controller *ctrl);
 int ssam_ctrl_notif_display_on(struct ssam_controller *ctrl);
 int ssam_ctrl_notif_d0_exit(struct ssam_controller *ctrl);
 int ssam_ctrl_notif_d0_entry(struct ssam_controller *ctrl);
+int ssam_ctrl_notif_sam_init(struct ssam_controller *ctrl);
 
 int ssam_controller_suspend(struct ssam_controller *ctrl);
 int ssam_controller_resume(struct ssam_controller *ctrl);

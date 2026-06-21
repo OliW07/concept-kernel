@@ -709,6 +709,18 @@ static int ssam_serial_hub_probe(struct serdev_device *serdev)
 		goto err_initrq;
 	}
 
+	/*
+	 * Send SAM subsystem init. This is needed on X1E80100-based Surface
+	 * Laptop 7 to ensure the EC properly initializes its subsystems
+	 * (notably the touchpad's HID-over-SPI path) on cold boot. Without
+	 * this the touchpad is unresponsive until the EC receives a hard
+	 * reset from userspace (e.g. via the surface_aggregator_cdev ioctl
+	 * with command_id 0x14).
+	 */
+	status = ssam_ctrl_notif_sam_init(ctrl);
+	if (status)
+		ssam_warn(ctrl, "SAM init notification failed: %d\n", status);
+
 	status = sysfs_create_group(&dev->kobj, &ssam_sam_group);
 	if (status)
 		goto err_initrq;
