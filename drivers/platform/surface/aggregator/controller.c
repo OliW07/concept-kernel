@@ -1851,6 +1851,13 @@ SSAM_DEFINE_SYNC_REQUEST_R(ssam_ssh_notif_d0_entry, u8, {
 	.instance_id     = 0x00,
 });
 
+SSAM_DEFINE_SYNC_REQUEST_N(ssam_ssh_notif_sam_init, {
+	.target_category = SSAM_SSH_TC_SAM,
+	.target_id       = SSAM_SSH_TID_SAM,
+	.command_id      = 0x14,
+	.instance_id     = 0x00,
+});
+
 /**
  * struct ssh_notification_params - Command payload to enable/disable SSH
  * notifications.
@@ -2181,6 +2188,31 @@ int ssam_ctrl_notif_d0_entry(struct ssam_controller *ctrl)
 			 response);
 		return -EPROTO;
 	}
+
+	return 0;
+}
+
+/**
+ * ssam_ctrl_notif_sam_init() - Send SAM subsystem init command to EC.
+ * @ctrl: The controller
+ *
+ * Sends the SAM initialization command (0x14) to the EC. This is required
+ * on some Surface models (e.g. X1E80100-based Surface Laptop 7) on cold
+ * boot to ensure the EC properly initializes its touchpad path. Without
+ * this the touchpad is unresponsive until the EC receives a hard reset
+ * from userspace (e.g. via the surface_aggregator_cdev ioctl).
+ *
+ * Return: Returns zero on success, a negative error code on failure.
+ */
+int ssam_ctrl_notif_sam_init(struct ssam_controller *ctrl)
+{
+	int status;
+
+	ssam_dbg(ctrl, "pm: sending SAM init (cid 0x14)\n");
+
+	status = ssam_retry(ssam_ssh_notif_sam_init, ctrl);
+	if (status)
+		return status;
 
 	return 0;
 }

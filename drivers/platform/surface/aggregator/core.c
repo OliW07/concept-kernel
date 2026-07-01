@@ -709,6 +709,16 @@ static int ssam_serial_hub_probe(struct serdev_device *serdev)
 		goto err_initrq;
 	}
 
+	/*
+	 * Send SAM subsystem init (cid 0x14). Required on X1E80100-based
+	 * Surface Laptop 7 on cold boot so the EC properly initializes its
+	 * touchpad path. Uses a fire-and-forget request (no response
+	 * expected), matching userspace's ec_reboot.py behaviour.
+	 */
+	status = ssam_ctrl_notif_sam_init(ctrl);
+	if (status)
+		ssam_warn(ctrl, "SAM init notification failed: %d\n", status);
+
 	status = sysfs_create_group(&dev->kobj, &ssam_sam_group);
 	if (status)
 		goto err_initrq;
